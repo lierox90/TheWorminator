@@ -323,6 +323,8 @@
 								"$ref": "AAAAAAFJhz0SMMb9ogI="
 							},
 							"wordWrap": false,
+							"suppressAttributes": null,
+							"suppressOperations": null,
 							"showMultiplicity": true,
 							"showOperationSignature": true,
 							"attributeCompartment": {
@@ -805,6 +807,8 @@
 								"$ref": "AAAAAAFJhz0f8cdHFus="
 							},
 							"wordWrap": false,
+							"suppressAttributes": null,
+							"suppressOperations": null,
 							"showMultiplicity": true,
 							"showOperationSignature": true,
 							"attributeCompartment": {
@@ -1119,6 +1123,8 @@
 								"$ref": "AAAAAAFJhz02Wcdunqg="
 							},
 							"wordWrap": false,
+							"suppressAttributes": null,
+							"suppressOperations": null,
 							"showMultiplicity": true,
 							"showOperationSignature": true,
 							"attributeCompartment": {
@@ -1192,7 +1198,7 @@
 											"containerExtending": true,
 											"left": 573,
 											"top": 83,
-											"width": 199,
+											"width": 201,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
@@ -1261,7 +1267,7 @@
 									"containerExtending": true,
 									"left": 568,
 									"top": 76,
-									"width": 209,
+									"width": 211,
 									"height": 25,
 									"autoResize": false,
 									"stereotypeLabel": {
@@ -1307,7 +1313,7 @@
 											"containerExtending": true,
 											"left": 573,
 											"top": 106,
-											"width": 199,
+											"width": 201,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
@@ -1327,7 +1333,7 @@
 									"containerExtending": true,
 									"left": 568,
 									"top": 101,
-									"width": 209,
+									"width": 211,
 									"height": 23,
 									"autoResize": false
 								},
@@ -1361,11 +1367,11 @@
 											"containerExtending": true,
 											"left": 573,
 											"top": 129,
-											"width": 199,
+											"width": 201,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+getWorm(): Worm",
+											"text": "+getCreature(): Creature",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5
 										},
@@ -1389,67 +1395,11 @@
 											"containerExtending": true,
 											"left": 573,
 											"top": 144,
-											"width": 199,
+											"width": 201,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+setWorm(w_worm: Worm)",
-											"horizontalAlignment": 0,
-											"verticalAlignment": 5
-										},
-										{
-											"_type": "UMLOperationView",
-											"_id": "AAAAAAFJh4QaXQSxlQE=",
-											"_parent": {
-												"$ref": "AAAAAAFJh3bYf9KdYuw="
-											},
-											"model": {
-												"$ref": "AAAAAAFJh4QaLwSuBUs="
-											},
-											"visible": true,
-											"enabled": true,
-											"lineColor": "#000000",
-											"fillColor": "#ffffff",
-											"fontColor": "#000000",
-											"font": "Arial;13;0",
-											"parentStyle": true,
-											"containerChangeable": false,
-											"containerExtending": true,
-											"left": 573,
-											"top": 159,
-											"width": 199,
-											"height": 13,
-											"autoResize": false,
-											"underline": false,
-											"text": "+getBacteria(): Genome",
-											"horizontalAlignment": 0,
-											"verticalAlignment": 5
-										},
-										{
-											"_type": "UMLOperationView",
-											"_id": "AAAAAAFJh4P4xgSqNWg=",
-											"_parent": {
-												"$ref": "AAAAAAFJh3bYf9KdYuw="
-											},
-											"model": {
-												"$ref": "AAAAAAFJh4P4ngSnHUc="
-											},
-											"visible": true,
-											"enabled": true,
-											"lineColor": "#000000",
-											"fillColor": "#ffffff",
-											"fontColor": "#000000",
-											"font": "Arial;13;0",
-											"parentStyle": true,
-											"containerChangeable": false,
-											"containerExtending": true,
-											"left": 573,
-											"top": 174,
-											"width": 199,
-											"height": 13,
-											"autoResize": false,
-											"underline": false,
-											"text": "+setBacteria(b_bacteria: Genome)",
+											"text": "+setCreature(c_creature: Creature)",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5
 										},
@@ -1472,8 +1422,8 @@
 											"containerChangeable": false,
 											"containerExtending": true,
 											"left": 573,
-											"top": 189,
-											"width": 199,
+											"top": 159,
+											"width": 201,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
@@ -1500,8 +1450,8 @@
 											"containerChangeable": false,
 											"containerExtending": true,
 											"left": 573,
-											"top": 204,
-											"width": 199,
+											"top": 174,
+											"width": 201,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
@@ -1521,8 +1471,8 @@
 									"containerExtending": true,
 									"left": 568,
 									"top": 124,
-									"width": 209,
-									"height": 98,
+									"width": 211,
+									"height": 68,
 									"autoResize": false
 								},
 								{
@@ -1561,8 +1511,8 @@
 							"containerExtending": true,
 							"left": 568,
 							"top": 76,
-							"width": 209,
-							"height": 161,
+							"width": 211,
+							"height": 117,
 							"autoResize": false,
 							"stereotypeDisplay": "label",
 							"showVisibility": true,
@@ -1960,7 +1910,7 @@
 							"left": 216,
 							"top": 200,
 							"width": 165,
-							"height": 131,
+							"height": 116,
 							"autoResize": false,
 							"stereotypeDisplay": "label",
 							"showVisibility": true,
@@ -2565,6 +2515,8 @@
 								"$ref": "AAAAAAFKGbKpiFbmTUU="
 							},
 							"wordWrap": false,
+							"suppressAttributes": null,
+							"suppressOperations": null,
 							"showMultiplicity": true,
 							"showOperationSignature": true,
 							"attributeCompartment": {
@@ -2991,6 +2943,8 @@
 								"$ref": "AAAAAAFKGbay+VdJqLU="
 							},
 							"wordWrap": false,
+							"suppressAttributes": null,
+							"suppressOperations": null,
 							"showMultiplicity": true,
 							"showOperationSignature": true,
 							"attributeCompartment": {
@@ -5635,7 +5589,7 @@
 									"parentStyle": false,
 									"containerChangeable": false,
 									"containerExtending": true,
-									"left": 801,
+									"left": 803,
 									"top": 120,
 									"width": 0,
 									"height": 13,
@@ -5667,7 +5621,7 @@
 									"parentStyle": false,
 									"containerChangeable": false,
 									"containerExtending": true,
-									"left": 804,
+									"left": 806,
 									"top": 134,
 									"width": 0,
 									"height": 13,
@@ -5699,7 +5653,7 @@
 									"parentStyle": false,
 									"containerChangeable": false,
 									"containerExtending": true,
-									"left": 797,
+									"left": 799,
 									"top": 93,
 									"width": 0,
 									"height": 13,
@@ -5778,7 +5732,7 @@
 								"$ref": "AAAAAAFKGbKpiFblvcA="
 							},
 							"lineStyle": 0,
-							"points": "639:288;804:288;804:112;776:112",
+							"points": "639:288;804:288;804:112;778:112",
 							"stereotypeDisplay": "label",
 							"showVisibility": true,
 							"showProperty": true,
@@ -6523,7 +6477,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFJh3bYddKUXN4="
 							},
-							"name": "getWorm",
+							"name": "getCreature",
 							"visibility": "public",
 							"isStatic": false,
 							"isLeaf": false,
@@ -6538,7 +6492,7 @@
 									"isStatic": false,
 									"isLeaf": false,
 									"type": {
-										"$ref": "AAAAAAFJhz0bKccfciY="
+										"$ref": "AAAAAAFKGbKpiFbjq0o="
 									},
 									"isReadOnly": false,
 									"isOrdered": false,
@@ -6556,7 +6510,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFJh3bYddKUXN4="
 							},
-							"name": "setWorm",
+							"name": "setCreature",
 							"visibility": "public",
 							"isStatic": false,
 							"isLeaf": false,
@@ -6567,79 +6521,12 @@
 									"_parent": {
 										"$ref": "AAAAAAFJh4N2tASZdck="
 									},
-									"name": "w_worm",
+									"name": "c_creature",
 									"visibility": "public",
 									"isStatic": false,
 									"isLeaf": false,
 									"type": {
-										"$ref": "AAAAAAFJhz0bKccfciY="
-									},
-									"isReadOnly": false,
-									"isOrdered": false,
-									"isUnique": false,
-									"direction": "in"
-								}
-							],
-							"concurrency": "sequential",
-							"isQuery": false,
-							"isAbstract": false
-						},
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAFJh4QaLwSuBUs=",
-							"_parent": {
-								"$ref": "AAAAAAFJh3bYddKUXN4="
-							},
-							"name": "getBacteria",
-							"visibility": "public",
-							"isStatic": false,
-							"isLeaf": false,
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFJh4Wj0ATNbGY=",
-									"_parent": {
-										"$ref": "AAAAAAFJh4QaLwSuBUs="
-									},
-									"visibility": "public",
-									"isStatic": false,
-									"isLeaf": false,
-									"type": {
-										"$ref": "AAAAAAFJhz0f8cdE/hg="
-									},
-									"isReadOnly": false,
-									"isOrdered": false,
-									"isUnique": false,
-									"direction": "return"
-								}
-							],
-							"concurrency": "sequential",
-							"isQuery": false,
-							"isAbstract": false
-						},
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAFJh4P4ngSnHUc=",
-							"_parent": {
-								"$ref": "AAAAAAFJh3bYddKUXN4="
-							},
-							"name": "setBacteria",
-							"visibility": "public",
-							"isStatic": false,
-							"isLeaf": false,
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFJh4WFoATKvwo=",
-									"_parent": {
-										"$ref": "AAAAAAFJh4P4ngSnHUc="
-									},
-									"name": "b_bacteria",
-									"visibility": "public",
-									"isStatic": false,
-									"isLeaf": false,
-									"type": {
-										"$ref": "AAAAAAFJhz0f8cdE/hg="
+										"$ref": "AAAAAAFKGbKpiFbjq0o="
 									},
 									"isReadOnly": false,
 									"isOrdered": false,
