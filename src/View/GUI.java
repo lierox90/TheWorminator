@@ -1,4 +1,4 @@
-package Elements;
+package View;
 
 public class GUI 
 {

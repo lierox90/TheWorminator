@@ -1,4 +1,4 @@
-package View;
+package Elements;
 
 public class Creature 
 {
