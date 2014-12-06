@@ -1,5 +1,6 @@
 package Elements;
 
-public class GUI {
+public class GUI 
+{
 
 }

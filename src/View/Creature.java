@@ -1,5 +1,6 @@
 package View;
 
-public class Creature {
+public class Creature 
+{
 
 }

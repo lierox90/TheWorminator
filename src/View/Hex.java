@@ -1,5 +1,6 @@
 package View;
 
-public class Hex {
+public class Hex 
+{
 
 }
