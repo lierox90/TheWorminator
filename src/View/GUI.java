@@ -21,6 +21,8 @@ public class GUI extends JFrame implements Runnable
 	//Inits
 	int width=100;
 	int heigh=100;
+	double initTimePrev = 0;
+	double endTimePrev = 0;
 	//Constructor
     public GUI() throws IOException 
     {
@@ -38,16 +40,23 @@ public class GUI extends JFrame implements Runnable
 	{
 		while(true)
 		{
+			double initTimeCurrent = (double)System.currentTimeMillis();
 			repaint();
-			System.out.println("Refreshed");
 			try 
 			{
-				Thread.sleep(20);
+				Thread.sleep(13);
 			}
 			catch (InterruptedException e) 
 			{
 				e.printStackTrace();
 			}
+			double endTimeCurrent = (double)System.currentTimeMillis();
+			double FPS = 1000/((endTimeCurrent - initTimeCurrent) * 0.9)+((endTimePrev - initTimePrev) * 0.1);
+			//System.out.println("Current - "+(endTimeCurrent - initTimeCurrent) * 0.9);
+			//System.out.println("Prev - "+(endTimePrev - initTimePrev) * 0.1);
+			initTimePrev = initTimeCurrent;
+			endTimePrev = endTimeCurrent;
+			//System.out.println("FPS - "+1000/FPS);
 		}
 	}
 }
