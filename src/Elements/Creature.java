@@ -43,13 +43,18 @@ public class Creature
 		return atrib;
 		
 	}
-	private int mutate(){
-		
+	private int mutate()
+	{
+		//Popraw, dalem jakas wartosc zeby nie bytlo bledow
+		return 0;
 	}
-	private boolean divide(){
-		
+	private boolean divide()
+	{
+		//Tutaj tez
+		return true;
 	}
-	public die(){
+	public void die()
+	{
 		
 	}
 	
