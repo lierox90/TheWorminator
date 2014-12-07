@@ -16,6 +16,5 @@ public class DrawPanel extends JPanel
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(new Color(255,255,255));
-        g2d.draw3DRect(10, 10, 50, 50, true);
     }
 }

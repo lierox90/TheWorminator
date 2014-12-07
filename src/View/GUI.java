@@ -1,6 +1,10 @@
 package View;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -19,10 +23,11 @@ import javax.swing.border.Border;
 public class GUI extends JFrame implements Runnable
 {
 	//Inits
-	int width=100;
-	int heigh=100;
+	int width=1000;
+	int heigh=700;
 	double initTimePrev = 0;
 	double endTimePrev = 0;
+	double FPS = 0;
 	//Constructor
     public GUI() throws IOException 
     {
@@ -34,6 +39,13 @@ public class GUI extends JFrame implements Runnable
         setVisible(true);
         setLayout(null);
         setLocationRelativeTo(null);
+        //Draw Panel
+        DrawPanel dPane = new DrawPanel();
+        dPane.setBounds(0, 30, width-6, heigh-58);
+        dPane.setBorder(BorderFactory.createLoweredBevelBorder());
+        //Addition
+        this.add(dPane);
+        
     }
 	@Override
 	public void run()
@@ -51,12 +63,9 @@ public class GUI extends JFrame implements Runnable
 				e.printStackTrace();
 			}
 			double endTimeCurrent = (double)System.currentTimeMillis();
-			double FPS = 1000/((endTimeCurrent - initTimeCurrent) * 0.9)+((endTimePrev - initTimePrev) * 0.1);
-			//System.out.println("Current - "+(endTimeCurrent - initTimeCurrent) * 0.9);
-			//System.out.println("Prev - "+(endTimePrev - initTimePrev) * 0.1);
+			FPS = 1000/((endTimeCurrent - initTimeCurrent) * 0.9)+((endTimePrev - initTimePrev) * 0.1);
 			initTimePrev = initTimeCurrent;
 			endTimePrev = endTimeCurrent;
-			//System.out.println("FPS - "+1000/FPS);
 		}
 	}
 }
