@@ -4,18 +4,18 @@ public class Hex
 {
 	private Creature animal = null;
 	
-	
-	public Creature getCreature(){
+	public Creature getCreature()
+	{
 		return animal;
 	}
 	
-	
-	public void setCreature(Creature a_animal){
+	public void setCreature(Creature a_animal)
+	{
 		this.animal = a_animal;
 	}
 	
-	
-	public boolean isOccupied(){
+	public boolean isOccupied()
+	{
 		if (animal != null) 
         {
             return true;
@@ -23,9 +23,8 @@ public class Hex
         return false;
 	}
 	
-	
-	public void clear(){
+	public void clear()
+	{
 		animal = null;
 	}
-
 }
