@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,9 +42,16 @@ public class GUI extends JFrame implements Runnable
         setLayout(null);
         setLocationRelativeTo(null);
         //Draw Panel
-        DrawPanel dPane = new DrawPanel();
+        final DrawPanel dPane = new DrawPanel();
         dPane.setBounds(0, 30, width-6, heigh-58);
         dPane.setBorder(BorderFactory.createLoweredBevelBorder());
+        dPane.addMouseMotionListener(new MouseMotionAdapter() 
+        {
+        	public void mouseMoved(MouseEvent me) 
+            {
+        		dPane.getMouseCoords(me.getX(), me.getY());
+            }
+        });
         //Addition
         this.add(dPane);
         
