@@ -2,7 +2,7 @@ package Elements;
 
 public class Hex 
 {
-	private Creature animal = null;
+	private Creature animal;
 	
 	public Creature getCreature()
 	{
