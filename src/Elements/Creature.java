@@ -1,5 +1,8 @@
 package Elements;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Creature 
 {
 	private boolean isWorm;
@@ -19,43 +22,43 @@ public class Creature
 	
 	
 	public Point move(){
-		if(isWorm)
-		{
+		if(isWorm){
 			rotate();
-			position.setPosX(5);
-			position.setPosY(3);
+			position.setPosX(position.getPosX()+1);
+			position.setPosY(position.getPosY()+1);
 		}
 		return position;
 	}
 	private Point rotate(){
-		if(isWorm)
-		{
-			position.setPosX(5);
-			position.setPosY(3);
+		if(isWorm){
+			Random rn = new Random();
+			int[] genes = new int[6];
+			for(int i=0;i<6;i++){
+				genes[i]=rn.nextInt(90)+10;
+			}
+			return position;
 		}
-		return position;
-	}
-	private int eat(){
-		if(isWorm)
-		{
-			
-		}
-		return atrib;
+		else return null;
 		
 	}
+	private int eat(){
+		if(isWorm){
+			atrib+=100;
+		}
+		else atrib =0;
+		return atrib;
+	}
+	
 	private int mutate()
 	{
 		//Popraw, dalem jakas wartosc zeby nie bytlo bledow
 		return 0;
 	}
-	private boolean divide()
-	{
-		//Tutaj tez
-		return true;
-	}
+
 	public void die()
-	{
-		
+	{	
+		position.setPosX(null);
+		position.setPosY(null);
 	}
 	
 }
