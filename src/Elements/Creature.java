@@ -6,7 +6,8 @@ import java.util.Random;
 public class Creature 
 {
 	private boolean isWorm;
-	private Point position;
+	private Point g_position;
+	private Point a_position;
 	private int atrib;
 	private Genome genePool;
 	
@@ -18,15 +19,23 @@ public class Creature
 	}
 	
 	
-	public Point getPos(){
-		return position;
+	public Point get_G_Pos(){
+		return g_position;
 	}
 	
 	
-	public void setPos(Point p_pos){
-	this.position = p_pos;	
+	public void set_G_Pos(Point p_pos){
+	this.g_position = p_pos;	
 	}
 	
+	public Point get_A_Pos(){
+		return a_position;
+	}
+	
+	
+	public void set_A_Pos(Point p_pos){
+	this.a_position = p_pos;	
+	}
 	
 	public boolean isWorm()
 	{
@@ -38,10 +47,10 @@ public class Creature
 	public Point move(){
 		if(isWorm){
 			rotate();
-			position.setPosX(position.getPosX()); // chodzi o to ze tutaj tracimy stare pozycje i trzeba by miec dostep do planszy zeby usunac wskaznik przedprzesunieciem i przestawic go po przesunieciu, wiec trzeba miec dostep do macierzy hexow z poziomy creature
-			position.setPosY(position.getPosY());// dobra tragedia
+			g_position.setPosX(g_position.getPosX()); // chodzi o to ze tutaj tracimy stare pozycje i trzeba by miec dostep do planszy zeby usunac wskaznik przedprzesunieciem i przestawic go po przesunieciu, wiec trzeba miec dostep do macierzy hexow z poziomy creature
+			g_position.setPosY(g_position.getPosY());// dobra tragedia
 		}
-		return position;
+		return g_position;
 	}
 	
 	
@@ -52,7 +61,7 @@ public class Creature
 			for(int i=0;i<6;i++){
 				genes[i]=rg.nextInt(90)+10;
 			}
-			return position;
+			return g_position;
 		}
 		else return null;	
 	}
