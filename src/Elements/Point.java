@@ -2,25 +2,31 @@ package Elements;
 
 public class Point 
 {
-	private Integer posX;
-	private Integer posY;
+	private int posX;
+	private int posY;
 	
-	void setPosX(Integer p_posX)
+	public Point(int p_posX,int p_posY)
+	{
+		this.posX = p_posX;
+		this.posY = p_posY;
+	}
+	
+	public void setPosX(int p_posX)
 	{
 		this.posX = p_posX;
 	}
 	
-	void setPosY(Integer p_posY)
+	public void setPosY(int p_posY)
 	{
 		this.posY = p_posY;
 	}
 	
-	Integer getPosX()
+	public int getPosX()
 	{
 		return this.posX;
 	}
 	
-	Integer getPosY()
+	public int getPosY()
 	{
 		return this.posY;
 	}

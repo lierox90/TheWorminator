@@ -1,12 +1,15 @@
 package View;
 
+import Elements.Hex;
+import Engine.Game;
+import Elements.Point;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -15,6 +18,7 @@ public class DrawPanel extends JPanel
 {
 	private BufferedImage image;
 	private int mouseX,mouseY;
+	private Game game;
 	public DrawPanel() 
 	{
 		mouseX=mouseY=0;
@@ -32,10 +36,24 @@ public class DrawPanel extends JPanel
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(new Color(255,255,255));
-        drawCell(g2d,50,50);
-        drawCell(g2d,250,50);
-        drawCell(g2d,50,250);
-        drawCell(g2d,250,250);
+        
+        if(game != null)
+        {
+            for(int i=0;i<game.getBoard().size();i++)
+            {
+                for(int j=0;j<game.getBoard().get(i).size();j++)
+                {
+                	Point point = game.getBoard().get(i).get(j).getPos();
+                	drawCell(g2d,point.getPosX(),point.getPosY());
+                }
+            }    	
+        }    
+        
+//        drawCell(g2d,-3,-8);drawCell(g2d,36,14);drawCell(g2d,75,-8);
+//        drawCell(g2d,-3,36);drawCell(g2d,36,58);
+//        
+//        drawCell(g2d,50,250);
+//        drawCell(g2d,250,250);
     }
     private void drawCell(Graphics2D g2d,int x,int y)
     {
@@ -94,5 +112,9 @@ public class DrawPanel extends JPanel
     		return true;
     	}
     	return false;
+    }
+    public void setGame(Game p_game)
+    {
+    	this.game = p_game;
     }
 }

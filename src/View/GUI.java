@@ -1,5 +1,7 @@
 package View;
 
+import Engine.Game;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -9,7 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,11 +29,12 @@ import javax.swing.border.Border;
 public class GUI extends JFrame implements Runnable
 {
 	//Inits
-	int width=1000;
-	int heigh=700;
-	double initTimePrev = 0;
-	double endTimePrev = 0;
-	double FPS = 0;
+	private int width=982;
+	private int heigh=670;
+	private double initTimePrev = 0;
+	private double endTimePrev = 0;
+	private double FPS = 0;
+	private Game game;
 	//Constructor
     public GUI() throws IOException 
     {
@@ -41,6 +46,8 @@ public class GUI extends JFrame implements Runnable
         setVisible(true);
         setLayout(null);
         setLocationRelativeTo(null);
+        //Game init
+        game = new Game();
         //Control buttons
         //Start
         JButton startButton = new JButton("Start");
@@ -71,6 +78,7 @@ public class GUI extends JFrame implements Runnable
         		dPane.getMouseCoords(me.getX(), me.getY());
             }
         });
+        dPane.setGame(game);
         //Addition
         this.add(dPane);
         this.add(startButton);
