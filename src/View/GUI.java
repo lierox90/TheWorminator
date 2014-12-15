@@ -1,5 +1,7 @@
 package View;
 
+import Elements.Creature;
+import Elements.Point;
 import Engine.Game;
 
 import java.awt.BorderLayout;
@@ -9,10 +11,11 @@ import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-
 import java.io.IOException;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,6 +28,8 @@ public class GUI extends JFrame implements Runnable
 	private double initTimePrev = 0;
 	private double endTimePrev = 0;
 	private double FPS = 0;
+	private int atribVal;
+	private boolean isCreature;
 	private Game game;
 	//Constructor
     public GUI(Game hexGameplay) throws IOException 
@@ -62,8 +67,33 @@ public class GUI extends JFrame implements Runnable
         final DrawPanel dPane = new DrawPanel();
         dPane.setBounds(0, 30, width-6, heigh-58);
         dPane.setBorder(BorderFactory.createLoweredBevelBorder());
+        dPane.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent me) 
+            {
+            	Point hexPos = dPane.getHexCooards();
+            	System.out.println(hexPos.getPosX()+","+hexPos.getPosY());
+                if(game != null)
+                {
+                    for(int i=0;i<game.getBoard().size();i++)
+                    {
+                        for(int j=0;j<game.getBoard().get(i).size();j++)
+                        {
+                        	if(hexPos.getPosX() == game.getBoard().get(i).get(j).getPos().getPosX())
+                        	{
+                            	if(hexPos.getPosY() == game.getBoard().get(i).get(j).getPos().getPosY())
+                            	{
+                            		placeCreature(i,j);
+                            	}
+                        	}
+                        }
+                    }
+                }
+            }                
+        });
         dPane.addMouseMotionListener(new MouseMotionAdapter() 
         {
+        	@Override
         	public void mouseMoved(MouseEvent me) 
             {
         		dPane.getMouseCoords(me.getX(), me.getY());
@@ -80,6 +110,11 @@ public class GUI extends JFrame implements Runnable
         this.add(clearButton);
         
     }
+    private void placeCreature(int i, int j)
+    {
+    	game.getBoard().get(i).get(j).setCreature(new Creature(isCreature,atribVal));
+    }
+    
 	@Override
 	public void run()
 	{
@@ -95,7 +130,7 @@ public class GUI extends JFrame implements Runnable
 			{
 				e.printStackTrace();
 			}
-			System.out.println("Frame Thread");
+			//System.out.println("Frame Thread");
 			double endTimeCurrent = (double)System.currentTimeMillis();
 			FPS = 1000/((endTimeCurrent - initTimeCurrent) * 0.9)+((endTimePrev - initTimePrev) * 0.1);
 			initTimePrev = initTimeCurrent;

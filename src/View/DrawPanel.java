@@ -19,6 +19,7 @@ public class DrawPanel extends JPanel
 {
 	private BufferedImage image;
 	private int mouseX,mouseY;
+	private int hexX,hexY;
 	private Game game;
 	public DrawPanel() 
 	{
@@ -69,6 +70,8 @@ public class DrawPanel extends JPanel
     	if (hover)
     	{
     		g2d.setColor(new Color(0,0,255));
+        	this.hexX=x;
+        	this.hexY=y;
     	}
     	else
     	{
@@ -91,6 +94,10 @@ public class DrawPanel extends JPanel
     	this.mouseX = p_mouseX;
     	this.mouseY = p_mouseY;
     }
+    public Point getHexCooards()
+    {
+    	return new Point(hexX,hexY);
+    }
     private Boolean isOnHover(Graphics2D g2d,int x,int y)
     {
     	//Calc mid point of hex cell
@@ -100,7 +107,6 @@ public class DrawPanel extends JPanel
     	int hexRange = (image.getHeight()/8) - 10;
     	//Calc distance between hex cell mid point and mouse cursor
     	int hex_mouse_distance = (int) Math.sqrt(Math.pow(imgMidPointX-mouseX, 2)+Math.pow(imgMidPointY-mouseY, 2));
-    	
     	//Debug
     	debugLine(g2d, imgMidPointX, imgMidPointY, hexRange, hex_mouse_distance, false);
     	

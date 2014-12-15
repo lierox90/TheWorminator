@@ -59,7 +59,7 @@ public class Game implements Runnable
 			{
 				e.printStackTrace();
 			}
-			System.out.println("Game Thread");
+			//System.out.println("Game Thread");
 		}
 	}
 }
