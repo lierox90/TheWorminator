@@ -12,7 +12,7 @@ public class Genome
 		genes = new int[6];
 		for(int i=0;i<6;i++)
 		{
-			this.genes[i]=rn.nextInt(90)+10;
+			this.genes[i] = rn.nextInt(100);
 		}
 	}
 	void setGenes(ArrayList<Integer> p_genes)
@@ -22,8 +22,8 @@ public class Genome
 			this.genes[i] = p_genes.get(i).intValue();
 		}
 	}
-	Integer getGene(int p_geneNr)
+	int getGene(int p_geneNr)
 	{
-		return new Integer(this.genes[p_geneNr]);
+		return this.genes[p_geneNr];
 	}
 }

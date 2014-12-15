@@ -13,18 +13,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import java.io.IOException;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.border.Border;
 
 public class GUI extends JFrame implements Runnable
 {
@@ -36,7 +27,7 @@ public class GUI extends JFrame implements Runnable
 	private double FPS = 0;
 	private Game game;
 	//Constructor
-    public GUI() throws IOException 
+    public GUI(Game hexGameplay) throws IOException 
     {
     	//Window init
         super("TheWorminator");
@@ -47,7 +38,7 @@ public class GUI extends JFrame implements Runnable
         setLayout(null);
         setLocationRelativeTo(null);
         //Game init
-        game = new Game();
+        game = hexGameplay;
         //Control buttons
         //Start
         JButton startButton = new JButton("Start");
@@ -98,12 +89,13 @@ public class GUI extends JFrame implements Runnable
 			repaint();
 			try 
 			{
-				Thread.sleep(13);
+				Thread.sleep(100);
 			}
 			catch (InterruptedException e) 
 			{
 				e.printStackTrace();
 			}
+			System.out.println("Frame Thread");
 			double endTimeCurrent = (double)System.currentTimeMillis();
 			FPS = 1000/((endTimeCurrent - initTimeCurrent) * 0.9)+((endTimePrev - initTimePrev) * 0.1);
 			initTimePrev = initTimeCurrent;

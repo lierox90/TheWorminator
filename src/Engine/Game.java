@@ -5,7 +5,7 @@ import java.util.List;
 
 import Elements.Hex;
 
-public class Game 
+public class Game implements Runnable
 {
 	private List<ArrayList<Hex>> board;
 	
@@ -35,8 +35,31 @@ public class Game
         }
 	}
 	
+	private void calcBoard()
+	{
+		
+	}
+	
 	public List<ArrayList<Hex>> getBoard()
 	{
 		return board;
+	}
+
+	@Override
+	public void run()
+	{
+		while(true)
+		{
+			calcBoard();
+			try 
+			{
+				Thread.sleep(1000);
+			}
+			catch (InterruptedException e) 
+			{
+				e.printStackTrace();
+			}
+			System.out.println("Game Thread");
+		}
 	}
 }

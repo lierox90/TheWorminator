@@ -1,5 +1,6 @@
 package View;
 
+import Elements.Creature;
 import Elements.Hex;
 import Engine.Game;
 import Elements.Point;
@@ -45,20 +46,22 @@ public class DrawPanel extends JPanel
                 {
                 	Point point = game.getBoard().get(i).get(j).getPos();
                 	drawCell(g2d,point.getPosX(),point.getPosY());
+                	if(game.getBoard().get(i).get(j).isOccupied())
+                	{
+                		drawCreature(game.getBoard().get(i).get(j).getCreature(),point.getPosX(),point.getPosY());
+                	}
                 }
             }    	
         }    
-        
-//        drawCell(g2d,-3,-8);drawCell(g2d,36,14);drawCell(g2d,75,-8);
-//        drawCell(g2d,-3,36);drawCell(g2d,36,58);
-//        
-//        drawCell(g2d,50,250);
-//        drawCell(g2d,250,250);
     }
     private void drawCell(Graphics2D g2d,int x,int y)
     {
     	g2d.drawImage(image, x, y, image.getWidth()/4, image.getHeight()/4, null);
     	drawBorder(g2d, x, y,isOnHover(g2d,x,y));
+    }
+    private void drawCreature(Creature creature,int x, int y)
+    {
+    	
     }
     private void drawBorder(Graphics2D g2d,int x,int y,Boolean hover)
     {
@@ -98,20 +101,29 @@ public class DrawPanel extends JPanel
     	//Calc distance between hex cell mid point and mouse cursor
     	int hex_mouse_distance = (int) Math.sqrt(Math.pow(imgMidPointX-mouseX, 2)+Math.pow(imgMidPointY-mouseY, 2));
     	
-//    	//Debug text + line
-//    	g2d.setColor(new Color(0,0,0));  
-//    	//Text
-//    	g2d.drawString(Integer.toString(image.getWidth()/4), 200, 100);
-//    	g2d.drawString(Integer.toString(imgMidPointX), 200, 130);
-//    	g2d.drawString(Integer.toString(hexRange), 200, 160);
-//    	g2d.drawString(Integer.toString(hex_mouse_distance), 200, 190);
-//    	//Line
-//    	g2d.drawLine(imgMidPointX, imgMidPointY, mouseX, mouseY);
+    	//Debug
+    	debugLine(g2d, imgMidPointX, imgMidPointY, hexRange, hex_mouse_distance, false);
+    	
     	if (hexRange >= hex_mouse_distance)
     	{
     		return true;
     	}
     	return false;
+    }
+    private void debugLine(Graphics2D g2d,int imgMidPointX,int imgMidPointY, int hexRange, int hex_mouse_distance, boolean draw)
+    {
+    	if(draw)
+    	{
+        	//Debug text + line
+        	g2d.setColor(new Color(0,0,0));  
+        	//Text
+        	g2d.drawString(Integer.toString(image.getWidth()/4), 200, 100);
+        	g2d.drawString(Integer.toString(imgMidPointX), 200, 130);
+        	g2d.drawString(Integer.toString(hexRange), 200, 160);
+        	g2d.drawString(Integer.toString(hex_mouse_distance), 200, 190);
+        	//Line
+        	g2d.drawLine(imgMidPointX, imgMidPointY, mouseX, mouseY);
+    	}
     }
     public void setGame(Game p_game)
     {
