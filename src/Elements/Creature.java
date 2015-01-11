@@ -1,6 +1,5 @@
 package Elements;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Creature 
@@ -46,20 +45,25 @@ public class Creature
 	}
 	
 	
-	private int eat()
+	private void eat(Creature b_Bacterie)
 	{
-		if(isWorm){
-			atrib+=20;
+		if(this.isWorm())
+		{
+			this.atrib+=b_Bacterie.atrib;
 		}
-		else atrib = 0;
-		return atrib;
 	}
 
 	
 	
-	private int mutate(Genome newGenePool)
+	private void mutate(Genome newGenePool)
 	{
-		
-		return 0;
+		for(int i = 0;i<6;i++)
+		{
+			Random rn = new Random();
+			if(rn.nextInt()%2 == 1)
+			{
+				this.genePool.setGene(newGenePool.getGene(i), i);
+			}
+		}
 	}
 }

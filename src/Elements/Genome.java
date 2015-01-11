@@ -22,6 +22,10 @@ public class Genome
 			this.genes[i] = p_genes.get(i).intValue();
 		}
 	}
+	void setGene(int gene,int index)
+	{
+		this.genes[index] = gene;
+	}
 	int getGene(int p_geneNr)
 	{
 		return this.genes[p_geneNr];

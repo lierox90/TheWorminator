@@ -60,6 +60,13 @@ public class GUI extends JFrame implements Runnable
         //Randomize
         JButton randButton = new JButton("Random");
         randButton.setBounds(814, 2, 100, 26);
+        randButton.addActionListener(new ActionListener() {
+ 
+            public void actionPerformed(ActionEvent e)
+            {
+                game.setCreaturesRandomly();
+            }
+        });  
         //Clear
         JButton clearButton = new JButton("Clear");
         clearButton.setBounds(204, 2, 100, 26);

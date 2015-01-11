@@ -47,12 +47,22 @@ public class DrawPanel extends JPanel
                 {
                 	Point point = game.getBoard().get(i).get(j).getPos();
                 	drawCell(g2d,point.getPosX(),point.getPosY());
+                }
+            }   
+            for(int i=0;i<game.getBoard().size();i++)
+            {
+                for(int j=0;j<game.getBoard().get(i).size();j++)
+                {
+                	Point point = game.getBoard().get(i).get(j).getPos();
+                	int imgMidPointX = (image.getWidth()/8) + point.getPosX();
+                	int imgMidPointY = (image.getHeight()/8) + point.getPosY();
                 	if(game.getBoard().get(i).get(j).isOccupied())
                 	{
-                		drawCreature(game.getBoard().get(i).get(j).getCreature(),point.getPosX(),point.getPosY());
+                		drawCreature(g2d,game.getBoard().get(i).get(j).getCreature(),imgMidPointX,imgMidPointY);
                 	}
                 }
-            }    	
+            }   
+
         }    
     }
     private void drawCell(Graphics2D g2d,int x,int y)
@@ -60,9 +70,13 @@ public class DrawPanel extends JPanel
     	g2d.drawImage(image, x, y, image.getWidth()/4, image.getHeight()/4, null);
     	drawBorder(g2d, x, y,isOnHover(g2d,x,y));
     }
-    private void drawCreature(Creature creature,int x, int y)
+    private void drawCreature(Graphics2D g2d,Creature creature,int x, int y)
     {
-    	
+    	if(creature.isWorm())
+    		g2d.setColor(new Color(255,0,0));
+    	else
+    		g2d.setColor(new Color(0,0,255));
+    	g2d.fillOval(x-15, y-15, 30, 30);
     }
     private void drawBorder(Graphics2D g2d,int x,int y,Boolean hover)
     {

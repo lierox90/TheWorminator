@@ -2,18 +2,23 @@ package Engine; // Very important commentary
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import Elements.Hex;
+import Elements.Creature;
 
 public class Game implements Runnable
 {
 	private List<ArrayList<Hex>> board;
+	private List<Creature> creatures;
 	
 	public Game()
 	{
 		int initX=0;
 		int initY=0;
 		board = new ArrayList<ArrayList<Hex>>();
+		creatures = new ArrayList<Creature>();
+		
         for(int i=0;i<24;i++)
         {
         	
@@ -35,6 +40,30 @@ public class Game implements Runnable
         }
 	}
 	
+	public void setCreaturesRandomly()
+	{
+		Random rn = new Random();
+		int posX = rn.nextInt(24);
+		int posY = rn.nextInt(13);
+		System.out.println(posX+","+posY);
+		creatures.add(new Creature(true,100));
+		board.get(posX).get(posY).setCreature(creatures.get(0));
+		for(int i=1;i<=10;i++)
+		{
+			posX = rn.nextInt(24);
+			posY = rn.nextInt(13);
+			System.out.println(posX+","+posY);
+			if(!board.get(posX).get(posY).isOccupied())
+			{
+				creatures.add(new Creature(false,20));
+				board.get(posX).get(posY).setCreature(creatures.get(i));
+			}
+			else
+				i--;
+			
+		}
+	}
+
 	private void calcBoard()
 	{
 		
