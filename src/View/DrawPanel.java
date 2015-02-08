@@ -77,6 +77,8 @@ public class DrawPanel extends JPanel
     	else
     		g2d.setColor(new Color(0,0,255));
     	g2d.fillOval(x-15, y-15, 30, 30);
+    	g2d.setColor(new Color(255,255,255));
+    	g2d.drawString(Integer.toString(creature.getLife()), x-10, y+5);
     }
     private void drawBorder(Graphics2D g2d,int x,int y,Boolean hover)
     {

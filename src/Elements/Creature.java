@@ -22,39 +22,49 @@ public class Creature
 		return false;
 	}
 	
-	private int rotate()
+	public int getLife()
+	{
+		return this.atrib;
+	}
+	
+	public void setLife(int life)
+	{
+		this.atrib=life;
+	}
+	
+	public int rotate()
 	{
 		if(isWorm)
 		{
-			Random rn = new Random();
+			Random rn = new Random(System.currentTimeMillis());
 			int number = rn.nextInt(100);
 			int temp = 100;
 			int id = 0;
 			for(int i = 0;i<6;i++)
 			{
-				int dif = genePool.getGene(i) - number;
+				int dif = Math.abs(genePool.getGene(i) - number);
+				System.out.println(dif + " = " + genePool.getGene(i) + "(" + i + ") - " + number);
 				if(dif<temp)
 				{
 					temp = dif;
 					id = i;
 				}
 			}
+			System.out.println("Selected -  " + temp + "(" + id + ")");
 			return id;
 		}
 		return -1;
 	}
 	
-	
-	private void eat(Creature b_Bacterie)
+	public void eat(Creature b_Bacterie)
 	{
 		if(this.isWorm())
 		{
 			this.atrib+=b_Bacterie.atrib;
+			mutate(b_Bacterie.genePool);
 		}
 	}
 
-	
-	
 	private void mutate(Genome newGenePool)
 	{
 		for(int i = 0;i<6;i++)

@@ -10,14 +10,14 @@ import Elements.Creature;
 public class Game implements Runnable
 {
 	private List<ArrayList<Hex>> board;
-	private List<Creature> creatures;
+	//private List<Creature> creatures;
 	
 	public Game()
 	{
 		int initX=0;
 		int initY=0;
 		board = new ArrayList<ArrayList<Hex>>();
-		creatures = new ArrayList<Creature>();
+		//creatures = new ArrayList<Creature>();
 		
         for(int i=0;i<24;i++)
         {
@@ -46,8 +46,7 @@ public class Game implements Runnable
 		int posX = rn.nextInt(24);
 		int posY = rn.nextInt(13);
 		System.out.println(posX+","+posY);
-		creatures.add(new Creature(true,100));
-		board.get(posX).get(posY).setCreature(creatures.get(0));
+		board.get(posX).get(posY).setCreature(new Creature(true,100));
 		for(int i=1;i<=10;i++)
 		{
 			posX = rn.nextInt(24);
@@ -55,18 +54,75 @@ public class Game implements Runnable
 			System.out.println(posX+","+posY);
 			if(!board.get(posX).get(posY).isOccupied())
 			{
-				creatures.add(new Creature(false,20));
-				board.get(posX).get(posY).setCreature(creatures.get(i));
+				board.get(posX).get(posY).setCreature(new Creature(false,20));
 			}
 			else
+			{
 				i--;
-			
+			}
 		}
 	}
 
 	private void calcBoard()
 	{
-		
+		for(int i=0;i<board.size();i++)
+		{
+			for(int j=0;j<board.get(i).size();j++)
+			{
+				if(board.get(i).get(j).getCreature()!= null)
+				{
+					if(board.get(i).get(j).getCreature().isWorm())
+					{
+						int direction = board.get(i).get(j).getCreature().rotate();
+						switch (direction) 
+						{
+			            	case 0:
+			            	{
+			            		//left
+			            		System.out.println("Left");
+			            		break;
+			            	}
+			            	case 1:  
+			            	{
+			            		//bottom left
+			            		System.out.println("Bottom Left");
+			            		break;
+			            	}
+			            	case 2:  
+			            	{
+			            		//bottom
+			            		System.out.println("Bottom");
+			            		break;
+			            	}
+			            	case 3:  
+			            	{
+			            		//right
+			            		System.out.println("Right");
+			            		break;
+			            	}
+			            	case 4:  
+			            	{
+			            		//upper right
+			            		System.out.println("Upper Right");
+			            		break;
+			            	}
+			            	case 5:  
+			            	{
+			            		//right
+			            		System.out.println("Upper");
+			            		break;
+			            	}
+			            	default: 
+			            	{
+			            		//bacteria
+			            		System.out.println("Bact");
+			            		break;
+			            	}
+						}
+					}	
+				}
+			}
+		}
 	}
 	
 	public List<ArrayList<Hex>> getBoard()
@@ -82,13 +138,12 @@ public class Game implements Runnable
 			calcBoard();
 			try 
 			{
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			}
 			catch (InterruptedException e) 
 			{
 				e.printStackTrace();
 			}
-			//System.out.println("Game Thread");
 		}
 	}
 }
