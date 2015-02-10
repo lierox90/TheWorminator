@@ -43,14 +43,14 @@ public class Creature
 			for(int i = 0;i<6;i++)
 			{
 				int dif = Math.abs(genePool.getGene(i) - number);
-				System.out.println(dif + " = " + genePool.getGene(i) + "(" + i + ") - " + number);
+				//System.out.println(dif + " = " + genePool.getGene(i) + "(" + i + ") - " + number);
 				if(dif<temp)
 				{
 					temp = dif;
 					id = i;
 				}
 			}
-			System.out.println("Selected -  " + temp + "(" + id + ")");
+			//System.out.println("Selected -  " + temp + "(" + id + ")");
 			return id;
 		}
 		return -1;
@@ -60,8 +60,18 @@ public class Creature
 	{
 		if(this.isWorm())
 		{
+			//System.out.println("Eating");
 			this.atrib+=b_Bacterie.atrib;
 			mutate(b_Bacterie.genePool);
+		}
+	}
+	
+	public void makeStep()
+	{
+		if(isWorm)
+		{
+			//System.out.println("Moving");
+			this.atrib--;
 		}
 	}
 

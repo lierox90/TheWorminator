@@ -22,11 +22,19 @@ public class Hex
 	
 	public void setCreature(Creature a_animal)
 	{
+		//System.out.println("Replacing");
 		this.animal = a_animal;
+	}
+	
+	public void clearCreature()
+	{
+		//System.out.println("Clearing old");
+		this.animal = null;
 	}
 	
 	public boolean isOccupied()
 	{
+		//System.out.println("Checking if occupied");
 		if (animal != null) 
         {
             return true;

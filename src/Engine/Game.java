@@ -11,6 +11,8 @@ public class Game implements Runnable
 {
 	private List<ArrayList<Hex>> board;
 	//private List<Creature> creatures;
+	private boolean ifMovedFlag=false;
+	private boolean isActiveFlag = false;
 	
 	public Game()
 	{
@@ -40,8 +42,33 @@ public class Game implements Runnable
         }
 	}
 	
+	public void clearBoard()
+	{
+		for(int i=0;i<board.size();i++)
+		{
+			for(int j=0;j<board.get(i).size();j++)
+			{
+				board.get(i).get(j).clearCreature();
+			}
+		}
+	}
+	
+	private void makeNewBacterieAfterBeingEaten()
+	{
+		Random rn = new Random();
+		int posX = rn.nextInt(24);
+		int posY = rn.nextInt(13);
+		while(board.get(posX).get(posY).isOccupied())
+		{
+			posX = rn.nextInt(24);
+			posY = rn.nextInt(13);
+		}
+		board.get(posX).get(posY).setCreature(new Creature(false,20));
+	}
+	
 	public void setCreaturesRandomly()
 	{
+		clearBoard();
 		Random rn = new Random();
 		int posX = rn.nextInt(24);
 		int posY = rn.nextInt(13);
@@ -51,7 +78,7 @@ public class Game implements Runnable
 		{
 			posX = rn.nextInt(24);
 			posY = rn.nextInt(13);
-			System.out.println(posX+","+posY);
+			//System.out.println(posX+","+posY);
 			if(!board.get(posX).get(posY).isOccupied())
 			{
 				board.get(posX).get(posY).setCreature(new Creature(false,20));
@@ -61,6 +88,21 @@ public class Game implements Runnable
 				i--;
 			}
 		}
+	}
+	
+	public void setActive()
+	{
+		this.isActiveFlag = true;
+	}
+	
+	public void setUnactive()
+	{
+		this.isActiveFlag = false;
+	}
+	
+	public boolean isActive()
+	{
+		return this.isActiveFlag;
 	}
 
 	private void calcBoard()
@@ -74,48 +116,198 @@ public class Game implements Runnable
 					if(board.get(i).get(j).getCreature().isWorm())
 					{
 						int direction = board.get(i).get(j).getCreature().rotate();
+						System.out.println("Direction - "+direction);
 						switch (direction) 
 						{
 			            	case 0:
 			            	{
-			            		//left
-			            		System.out.println("Left");
+			            		//top left
+			            		System.out.println("Upper Left");
+			            		if(i%2 == 0)
+			            		{
+				            		if(i>0 && j>0)
+				            		{
+				            			if(board.get(i-1).get(j-1).isOccupied())
+				            			{
+				            				board.get(i).get(j).getCreature().eat(board.get(i-1).get(j-1).getCreature());
+				            				makeNewBacterieAfterBeingEaten();
+				            			}
+				            			board.get(i).get(j).getCreature().makeStep();
+				            			board.get(i-1).get(j-1).setCreature(board.get(i).get(j).getCreature());
+			            				board.get(i).get(j).setCreature(null);
+				            		}
+			            		}
+			            		else
+			            		{
+				            		if(i>0)
+				            		{
+				            			if(board.get(i-1).get(j).isOccupied())
+				            			{
+				            				board.get(i).get(j).getCreature().eat(board.get(i-1).get(j).getCreature());
+				            				makeNewBacterieAfterBeingEaten();
+				            			}
+				            			board.get(i).get(j).getCreature().makeStep();
+				            			board.get(i-1).get(j).setCreature(board.get(i).get(j).getCreature());
+			            				board.get(i).get(j).setCreature(null);
+				            		}
+			            		}
 			            		break;
 			            	}
 			            	case 1:  
 			            	{
 			            		//bottom left
-			            		System.out.println("Bottom Left");
+			            		if(i%2 == 0)
+			            		{
+				            		if(i>0)
+				            		{
+				            			System.out.println("Bottom Left");
+				            			if(board.get(i-1).get(j).isOccupied())
+				            			{
+				            				board.get(i).get(j).getCreature().eat(board.get(i-1).get(j).getCreature());
+				            				makeNewBacterieAfterBeingEaten();
+				            			}
+				            			board.get(i).get(j).getCreature().makeStep();
+				            			board.get(i-1).get(j).setCreature(board.get(i).get(j).getCreature());
+			            				board.get(i).get(j).setCreature(null);
+				            		}
+			            		}
+			            		else
+			            		{
+				            		if(i>0 && j<board.get(i).size())
+				            		{
+				            			System.out.println("Bottom Left");
+				            			if(board.get(i-1).get(j+1).isOccupied())
+				            			{
+				            				board.get(i).get(j).getCreature().eat(board.get(i-1).get(j+1).getCreature());
+				            				makeNewBacterieAfterBeingEaten();
+				            			}
+				            			board.get(i).get(j).getCreature().makeStep();
+				            			board.get(i-1).get(j+1).setCreature(board.get(i).get(j).getCreature());
+			            				board.get(i).get(j).setCreature(null);
+				            		}
+			            		}
 			            		break;
 			            	}
 			            	case 2:  
 			            	{
 			            		//bottom
-			            		System.out.println("Bottom");
+			            		if(!ifMovedFlag)
+			            		{
+				            		if(j<board.get(i).size()-1)
+				            		{
+				            			System.out.println("Bottom");
+				            			if(board.get(i).get(j+1).isOccupied())
+				            			{
+				            				board.get(i).get(j).getCreature().eat(board.get(i).get(j+1).getCreature());
+				            				makeNewBacterieAfterBeingEaten();
+				            			}
+				            			board.get(i).get(j).getCreature().makeStep();
+				            			board.get(i).get(j+1).setCreature(board.get(i).get(j).getCreature());
+				            			board.get(i).get(j).clearCreature();
+				            			ifMovedFlag = true;
+				            		}
+			            		}
 			            		break;
 			            	}
-			            	case 3:  
+							case 3:  
 			            	{
-			            		//right
-			            		System.out.println("Right");
+			            		//bottom right
+			            		System.out.println("Bottom Right");
+			        			if(!ifMovedFlag)
+			            		{
+				            		if(i%2 == 0)
+				            		{
+					            		if(i<board.size()-1)
+					            		{
+					            			if(board.get(i+1).get(j).isOccupied())
+					            			{
+					            				board.get(i).get(j).getCreature().eat(board.get(i+1).get(j).getCreature());
+					            				makeNewBacterieAfterBeingEaten();
+					            			}
+					            			board.get(i).get(j).getCreature().makeStep();
+					            			board.get(i+1).get(j).setCreature(board.get(i).get(j).getCreature());
+				            				board.get(i).get(j).setCreature(null);
+				            				ifMovedFlag = true;
+					            		}
+				            		}
+				            		else
+				            		{
+					            		if(i<board.size()-1 && j<board.get(i).size()-1)
+					            		{
+					            			if(board.get(i+1).get(j+1).isOccupied())
+					            			{
+					            				board.get(i).get(j).getCreature().eat(board.get(i+1).get(j+1).getCreature());
+					            				makeNewBacterieAfterBeingEaten();
+					            			}
+					            			board.get(i).get(j).getCreature().makeStep();
+					            			board.get(i+1).get(j+1).setCreature(board.get(i).get(j).getCreature());
+				            				board.get(i).get(j).setCreature(null);
+				            				ifMovedFlag = true;
+					            		}
+				            		}
+				            	}
 			            		break;
 			            	}
 			            	case 4:  
 			            	{
 			            		//upper right
 			            		System.out.println("Upper Right");
+			            		if(!ifMovedFlag)
+			            		{
+				            		if(i%2 == 0)
+				            		{
+					            		if(i<board.size()-1 && j>0)
+					            		{
+					            			if(board.get(i+1).get(j-1).isOccupied())
+					            			{
+					            				board.get(i).get(j).getCreature().eat(board.get(i+1).get(j-1).getCreature());
+					            				makeNewBacterieAfterBeingEaten();
+					            			}
+					            			board.get(i).get(j).getCreature().makeStep();
+					            			board.get(i+1).get(j-1).setCreature(board.get(i).get(j).getCreature());
+				            				board.get(i).get(j).setCreature(null);
+				            				ifMovedFlag = true;
+					            		}
+				            		}
+				            		else
+				            		{
+					            		if(i<board.size()-1)
+					            		{
+					            			if(board.get(i+1).get(j).isOccupied())
+					            			{
+					            				board.get(i).get(j).getCreature().eat(board.get(i+1).get(j).getCreature());
+					            				makeNewBacterieAfterBeingEaten();
+					            			}
+					            			board.get(i).get(j).getCreature().makeStep();
+					            			board.get(i+1).get(j).setCreature(board.get(i).get(j).getCreature());
+				            				board.get(i).get(j).setCreature(null);
+				            				ifMovedFlag = true;
+					            		}
+				            		}
+				            	}
 			            		break;
 			            	}
 			            	case 5:  
 			            	{
-			            		//right
+			            		//upper
 			            		System.out.println("Upper");
+			            		if(j>0)
+			            		{
+			            			if(board.get(i).get(j-1).isOccupied())
+			            			{
+			            				board.get(i).get(j).getCreature().eat(board.get(i).get(j-1).getCreature());
+			            				makeNewBacterieAfterBeingEaten();
+			            			}
+			            			board.get(i).get(j).getCreature().makeStep();
+			            			board.get(i).get(j-1).setCreature(board.get(i).get(j).getCreature());
+		            				board.get(i).get(j).setCreature(null);
+			            		}
 			            		break;
 			            	}
 			            	default: 
 			            	{
 			            		//bacteria
-			            		System.out.println("Bact");
+			            		//System.out.println("Bact");
 			            		break;
 			            	}
 						}
@@ -123,6 +315,7 @@ public class Game implements Runnable
 				}
 			}
 		}
+		ifMovedFlag = false;
 	}
 	
 	public List<ArrayList<Hex>> getBoard()
@@ -133,16 +326,19 @@ public class Game implements Runnable
 	@Override
 	public void run()
 	{
-		while(true)
+		if(isActiveFlag)
 		{
-			calcBoard();
-			try 
+			while(true)
 			{
-				Thread.sleep(500);
-			}
-			catch (InterruptedException e) 
-			{
-				e.printStackTrace();
+				calcBoard();
+				try 
+				{
+					Thread.sleep(700);
+				}
+				catch (InterruptedException e) 
+				{
+					e.printStackTrace();
+				}
 			}
 		}
 	}

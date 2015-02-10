@@ -18,6 +18,8 @@ import javax.swing.JPanel;
 public class DrawPanel extends JPanel
 {
 	private BufferedImage image;
+	private BufferedImage bact;
+	private BufferedImage worm;
 	private int mouseX,mouseY;
 	private int hexX,hexY;
 	private Game game;
@@ -27,6 +29,8 @@ public class DrawPanel extends JPanel
 		try 
 	    {                
 			image = ImageIO.read(new File("src/res/hexagon-256.png"));
+			bact = ImageIO.read(new File("src/res/blue_big.png"));
+			worm = ImageIO.read(new File("src/res/red_big.png"));
 	    } 
 	    catch (IOException ex) 
 	    {
@@ -73,10 +77,9 @@ public class DrawPanel extends JPanel
     private void drawCreature(Graphics2D g2d,Creature creature,int x, int y)
     {
     	if(creature.isWorm())
-    		g2d.setColor(new Color(255,0,0));
+    		g2d.drawImage(worm,x-16, y-16, 32, 32, null);
     	else
-    		g2d.setColor(new Color(0,0,255));
-    	g2d.fillOval(x-15, y-15, 30, 30);
+    		g2d.drawImage(bact,x-16, y-16, 32, 32, null);
     	g2d.setColor(new Color(255,255,255));
     	g2d.drawString(Integer.toString(creature.getLife()), x-10, y+5);
     }
