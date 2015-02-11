@@ -11,7 +11,7 @@ public class Game implements Runnable
 {
 	private List<ArrayList<Hex>> board;
 	//private List<Creature> creatures;
-	private boolean ifMovedFlag=false;
+	private boolean ifMovedFlag = false;
 	private boolean isActiveFlag = false;
 	
 	public Game()
@@ -326,19 +326,20 @@ public class Game implements Runnable
 	@Override
 	public void run()
 	{
-		if(isActiveFlag)
+		while(true)
 		{
-			while(true)
+			if(isActiveFlag)
 			{
+				System.out.println("is active");
 				calcBoard();
-				try 
-				{
-					Thread.sleep(700);
-				}
-				catch (InterruptedException e) 
-				{
-					e.printStackTrace();
-				}
+			}
+			try 
+			{
+				Thread.sleep(700);
+			}
+			catch (InterruptedException e) 
+			{
+				e.printStackTrace();
 			}
 		}
 	}
