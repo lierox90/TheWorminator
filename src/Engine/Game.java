@@ -115,201 +115,208 @@ public class Game implements Runnable
 				{
 					if(board.get(i).get(j).getCreature().isWorm())
 					{
-						int direction = board.get(i).get(j).getCreature().rotate();
-						System.out.println("Direction - "+direction);
-						switch (direction) 
+						if(board.get(i).get(j).getCreature().getLife()>0)
 						{
-			            	case 0:
-			            	{
-			            		//top left
-			            		System.out.println("Upper Left");
-			            		if(i%2 == 0)
-			            		{
-				            		if(i>0 && j>0)
-				            		{
-				            			if(board.get(i-1).get(j-1).isOccupied())
-				            			{
-				            				board.get(i).get(j).getCreature().eat(board.get(i-1).get(j-1).getCreature());
-				            				makeNewBacterieAfterBeingEaten();
-				            			}
-				            			board.get(i).get(j).getCreature().makeStep();
-				            			board.get(i-1).get(j-1).setCreature(board.get(i).get(j).getCreature());
-			            				board.get(i).get(j).setCreature(null);
-				            		}
-			            		}
-			            		else
-			            		{
-				            		if(i>0)
-				            		{
-				            			if(board.get(i-1).get(j).isOccupied())
-				            			{
-				            				board.get(i).get(j).getCreature().eat(board.get(i-1).get(j).getCreature());
-				            				makeNewBacterieAfterBeingEaten();
-				            			}
-				            			board.get(i).get(j).getCreature().makeStep();
-				            			board.get(i-1).get(j).setCreature(board.get(i).get(j).getCreature());
-			            				board.get(i).get(j).setCreature(null);
-				            		}
-			            		}
-			            		break;
-			            	}
-			            	case 1:  
-			            	{
-			            		//bottom left
-			            		if(i%2 == 0)
-			            		{
-				            		if(i>0)
-				            		{
-				            			System.out.println("Bottom Left");
-				            			if(board.get(i-1).get(j).isOccupied())
-				            			{
-				            				board.get(i).get(j).getCreature().eat(board.get(i-1).get(j).getCreature());
-				            				makeNewBacterieAfterBeingEaten();
-				            			}
-				            			board.get(i).get(j).getCreature().makeStep();
-				            			board.get(i-1).get(j).setCreature(board.get(i).get(j).getCreature());
-			            				board.get(i).get(j).setCreature(null);
-				            		}
-			            		}
-			            		else
-			            		{
-				            		if(i>0 && j<board.get(i).size())
-				            		{
-				            			System.out.println("Bottom Left");
-				            			if(board.get(i-1).get(j+1).isOccupied())
-				            			{
-				            				board.get(i).get(j).getCreature().eat(board.get(i-1).get(j+1).getCreature());
-				            				makeNewBacterieAfterBeingEaten();
-				            			}
-				            			board.get(i).get(j).getCreature().makeStep();
-				            			board.get(i-1).get(j+1).setCreature(board.get(i).get(j).getCreature());
-			            				board.get(i).get(j).setCreature(null);
-				            		}
-			            		}
-			            		break;
-			            	}
-			            	case 2:  
-			            	{
-			            		//bottom
-			            		if(!ifMovedFlag)
-			            		{
-				            		if(j<board.get(i).size()-1)
-				            		{
-				            			System.out.println("Bottom");
-				            			if(board.get(i).get(j+1).isOccupied())
-				            			{
-				            				board.get(i).get(j).getCreature().eat(board.get(i).get(j+1).getCreature());
-				            				makeNewBacterieAfterBeingEaten();
-				            			}
-				            			board.get(i).get(j).getCreature().makeStep();
-				            			board.get(i).get(j+1).setCreature(board.get(i).get(j).getCreature());
-				            			board.get(i).get(j).clearCreature();
-				            			ifMovedFlag = true;
-				            		}
-			            		}
-			            		break;
-			            	}
-							case 3:  
-			            	{
-			            		//bottom right
-			            		System.out.println("Bottom Right");
-			        			if(!ifMovedFlag)
-			            		{
+							int direction = board.get(i).get(j).getCreature().rotate();
+							System.out.println("Direction - "+direction);
+							switch (direction) 
+							{
+				            	case 0:
+				            	{
+				            		//top left
+				            		System.out.println("Upper Left");
 				            		if(i%2 == 0)
 				            		{
-					            		if(i<board.size()-1)
+					            		if(i>0 && j>0)
 					            		{
-					            			if(board.get(i+1).get(j).isOccupied())
+					            			if(board.get(i-1).get(j-1).isOccupied())
 					            			{
-					            				board.get(i).get(j).getCreature().eat(board.get(i+1).get(j).getCreature());
+					            				board.get(i).get(j).getCreature().eat(board.get(i-1).get(j-1).getCreature());
 					            				makeNewBacterieAfterBeingEaten();
 					            			}
 					            			board.get(i).get(j).getCreature().makeStep();
-					            			board.get(i+1).get(j).setCreature(board.get(i).get(j).getCreature());
+					            			board.get(i-1).get(j-1).setCreature(board.get(i).get(j).getCreature());
 				            				board.get(i).get(j).setCreature(null);
-				            				ifMovedFlag = true;
 					            		}
 				            		}
 				            		else
 				            		{
-					            		if(i<board.size()-1 && j<board.get(i).size()-1)
+					            		if(i>0)
 					            		{
-					            			if(board.get(i+1).get(j+1).isOccupied())
+					            			if(board.get(i-1).get(j).isOccupied())
 					            			{
-					            				board.get(i).get(j).getCreature().eat(board.get(i+1).get(j+1).getCreature());
+					            				board.get(i).get(j).getCreature().eat(board.get(i-1).get(j).getCreature());
 					            				makeNewBacterieAfterBeingEaten();
 					            			}
 					            			board.get(i).get(j).getCreature().makeStep();
-					            			board.get(i+1).get(j+1).setCreature(board.get(i).get(j).getCreature());
+					            			board.get(i-1).get(j).setCreature(board.get(i).get(j).getCreature());
 				            				board.get(i).get(j).setCreature(null);
-				            				ifMovedFlag = true;
 					            		}
 				            		}
+				            		break;
 				            	}
-			            		break;
-			            	}
-			            	case 4:  
-			            	{
-			            		//upper right
-			            		System.out.println("Upper Right");
-			            		if(!ifMovedFlag)
-			            		{
+				            	case 1:  
+				            	{
+				            		//bottom left
 				            		if(i%2 == 0)
 				            		{
-					            		if(i<board.size()-1 && j>0)
+					            		if(i>0)
 					            		{
-					            			if(board.get(i+1).get(j-1).isOccupied())
+					            			System.out.println("Bottom Left");
+					            			if(board.get(i-1).get(j).isOccupied())
 					            			{
-					            				board.get(i).get(j).getCreature().eat(board.get(i+1).get(j-1).getCreature());
+					            				board.get(i).get(j).getCreature().eat(board.get(i-1).get(j).getCreature());
 					            				makeNewBacterieAfterBeingEaten();
 					            			}
 					            			board.get(i).get(j).getCreature().makeStep();
-					            			board.get(i+1).get(j-1).setCreature(board.get(i).get(j).getCreature());
+					            			board.get(i-1).get(j).setCreature(board.get(i).get(j).getCreature());
 				            				board.get(i).get(j).setCreature(null);
-				            				ifMovedFlag = true;
 					            		}
 				            		}
 				            		else
 				            		{
-					            		if(i<board.size()-1)
+					            		if(i>0 && j<board.get(i).size()-1)
 					            		{
-					            			if(board.get(i+1).get(j).isOccupied())
+					            			System.out.println("Bottom Left");
+					            			if(board.get(i-1).get(j+1).isOccupied())
 					            			{
-					            				board.get(i).get(j).getCreature().eat(board.get(i+1).get(j).getCreature());
+					            				board.get(i).get(j).getCreature().eat(board.get(i-1).get(j+1).getCreature());
 					            				makeNewBacterieAfterBeingEaten();
 					            			}
 					            			board.get(i).get(j).getCreature().makeStep();
-					            			board.get(i+1).get(j).setCreature(board.get(i).get(j).getCreature());
+					            			board.get(i-1).get(j+1).setCreature(board.get(i).get(j).getCreature());
 				            				board.get(i).get(j).setCreature(null);
-				            				ifMovedFlag = true;
 					            		}
 				            		}
+				            		break;
 				            	}
-			            		break;
-			            	}
-			            	case 5:  
-			            	{
-			            		//upper
-			            		System.out.println("Upper");
-			            		if(j>0)
-			            		{
-			            			if(board.get(i).get(j-1).isOccupied())
-			            			{
-			            				board.get(i).get(j).getCreature().eat(board.get(i).get(j-1).getCreature());
-			            				makeNewBacterieAfterBeingEaten();
-			            			}
-			            			board.get(i).get(j).getCreature().makeStep();
-			            			board.get(i).get(j-1).setCreature(board.get(i).get(j).getCreature());
-		            				board.get(i).get(j).setCreature(null);
-			            		}
-			            		break;
-			            	}
-			            	default: 
-			            	{
-			            		//bacteria
-			            		//System.out.println("Bact");
-			            		break;
-			            	}
+				            	case 2:  
+				            	{
+				            		//bottom
+				            		if(!ifMovedFlag)
+				            		{
+					            		if(j<board.get(i).size()-1)
+					            		{
+					            			System.out.println("Bottom");
+					            			if(board.get(i).get(j+1).isOccupied())
+					            			{
+					            				board.get(i).get(j).getCreature().eat(board.get(i).get(j+1).getCreature());
+					            				makeNewBacterieAfterBeingEaten();
+					            			}
+					            			board.get(i).get(j).getCreature().makeStep();
+					            			board.get(i).get(j+1).setCreature(board.get(i).get(j).getCreature());
+					            			board.get(i).get(j).clearCreature();
+					            			ifMovedFlag = true;
+					            		}
+				            		}
+				            		break;
+				            	}
+								case 3:  
+				            	{
+				            		//bottom right
+				            		System.out.println("Bottom Right");
+				        			if(!ifMovedFlag)
+				            		{
+					            		if(i%2 == 0)
+					            		{
+						            		if(i<board.size()-1)
+						            		{
+						            			if(board.get(i+1).get(j).isOccupied())
+						            			{
+						            				board.get(i).get(j).getCreature().eat(board.get(i+1).get(j).getCreature());
+						            				makeNewBacterieAfterBeingEaten();
+						            			}
+						            			board.get(i).get(j).getCreature().makeStep();
+						            			board.get(i+1).get(j).setCreature(board.get(i).get(j).getCreature());
+					            				board.get(i).get(j).setCreature(null);
+					            				ifMovedFlag = true;
+						            		}
+					            		}
+					            		else
+					            		{
+						            		if(i<board.size()-1 && j<board.get(i).size()-1)
+						            		{
+						            			if(board.get(i+1).get(j+1).isOccupied())
+						            			{
+						            				board.get(i).get(j).getCreature().eat(board.get(i+1).get(j+1).getCreature());
+						            				makeNewBacterieAfterBeingEaten();
+						            			}
+						            			board.get(i).get(j).getCreature().makeStep();
+						            			board.get(i+1).get(j+1).setCreature(board.get(i).get(j).getCreature());
+					            				board.get(i).get(j).setCreature(null);
+					            				ifMovedFlag = true;
+						            		}
+					            		}
+					            	}
+				            		break;
+				            	}
+				            	case 4:  
+				            	{
+				            		//upper right
+				            		System.out.println("Upper Right");
+				            		if(!ifMovedFlag)
+				            		{
+					            		if(i%2 == 0)
+					            		{
+						            		if(i<board.size()-1 && j>0)
+						            		{
+						            			if(board.get(i+1).get(j-1).isOccupied())
+						            			{
+						            				board.get(i).get(j).getCreature().eat(board.get(i+1).get(j-1).getCreature());
+						            				makeNewBacterieAfterBeingEaten();
+						            			}
+						            			board.get(i).get(j).getCreature().makeStep();
+						            			board.get(i+1).get(j-1).setCreature(board.get(i).get(j).getCreature());
+					            				board.get(i).get(j).setCreature(null);
+					            				ifMovedFlag = true;
+						            		}
+					            		}
+					            		else
+					            		{
+						            		if(i<board.size()-1)
+						            		{
+						            			if(board.get(i+1).get(j).isOccupied())
+						            			{
+						            				board.get(i).get(j).getCreature().eat(board.get(i+1).get(j).getCreature());
+						            				makeNewBacterieAfterBeingEaten();
+						            			}
+						            			board.get(i).get(j).getCreature().makeStep();
+						            			board.get(i+1).get(j).setCreature(board.get(i).get(j).getCreature());
+					            				board.get(i).get(j).setCreature(null);
+					            				ifMovedFlag = true;
+						            		}
+					            		}
+					            	}
+				            		break;
+				            	}
+				            	case 5:  
+				            	{
+				            		//upper
+				            		System.out.println("Upper");
+				            		if(j>0)
+				            		{
+				            			if(board.get(i).get(j-1).isOccupied())
+				            			{
+				            				board.get(i).get(j).getCreature().eat(board.get(i).get(j-1).getCreature());
+				            				makeNewBacterieAfterBeingEaten();
+				            			}
+				            			board.get(i).get(j).getCreature().makeStep();
+				            			board.get(i).get(j-1).setCreature(board.get(i).get(j).getCreature());
+			            				board.get(i).get(j).setCreature(null);
+				            		}
+				            		break;
+				            	}
+				            	default: 
+				            	{
+				            		break;
+				            	}
+							}
+						}
+						else
+						{
+							isActiveFlag = false;
+							j=board.get(i).size()-1;
+							i=board.size()-1;
 						}
 					}	
 				}
@@ -330,7 +337,6 @@ public class Game implements Runnable
 		{
 			if(isActiveFlag)
 			{
-				System.out.println("is active");
 				calcBoard();
 			}
 			try 
