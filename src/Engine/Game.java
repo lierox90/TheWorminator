@@ -315,6 +315,7 @@ public class Game implements Runnable
 						else
 						{
 							isActiveFlag = false;
+							board.get(i).get(j).clearCreature();
 							j=board.get(i).size()-1;
 							i=board.size()-1;
 						}
